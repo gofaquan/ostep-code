@@ -17,10 +17,17 @@ main(int argc, char *argv[])
         printf("hello, I am child (pid:%d)\n", (int) getpid());
 	sleep(1);
     } else {
+        //调用 wait() 函数可以使得父进程总是等子进程结束再执行
         // parent goes down this path (original process)
         int wc = wait(NULL);
         printf("hello, I am parent of %d (wc:%d) (pid:%d)\n",
 	       rc, wc, (int) getpid());
+
+        //可以试着执行这个，此时父进程先执行完
+//        printf("hello, I am parent of %d (pid:%d)\n",
+//               rc,(int) getpid());
     }
+
+
     return 0;
 }
